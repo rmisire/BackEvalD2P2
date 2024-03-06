@@ -9,11 +9,11 @@ public class BackEvalD2P2DbContextFactory : IDesignTimeDbContextFactory<BackEval
     public BackEvalD2P2DbContext CreateDbContext(string[] args)
     {
         var basePath = Directory.GetCurrentDirectory();
-        var configurationPath = Path.Combine(basePath, "..", "BackEvalD2P2.API");
+        var configurationPath = Directory.GetCurrentDirectory();
 
         IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(configurationPath)
-            .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings.Development.json")
             .Build();
         
         var optionsBuilder = new DbContextOptionsBuilder<BackEvalD2P2DbContext>();

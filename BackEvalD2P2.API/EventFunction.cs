@@ -36,7 +36,7 @@ public class EventFunction
     }
     
     [Function("GetAllEvents")]
-    public async Task<HttpResponseData> GetAllEvents([HttpTrigger(AuthorizationLevel.Function, "get", Route = "event")] HttpRequestData req, FunctionContext context)
+    public async Task<HttpResponseData> GetAllEvents([HttpTrigger(AuthorizationLevel.Function, "get", Route = "events")] HttpRequestData req, FunctionContext context)
     {
         var logger = context.GetLogger("EventFunction");
         logger.LogInformation("C# HTTP trigger function processed a request.");
