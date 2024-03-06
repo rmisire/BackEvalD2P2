@@ -34,4 +34,20 @@ public class EventFunction
         
         return response;
     }
+    
+    [Function("GetAllEvents")]
+    public async Task<HttpResponseData> GetAllEvents([HttpTrigger(AuthorizationLevel.Function, "get", Route = "event")] HttpRequestData req, FunctionContext context)
+    {
+        var logger = context.GetLogger("EventFunction");
+        logger.LogInformation("C# HTTP trigger function processed a request.");
+        
+        var events = await _eventService.GetAllEventsAsync();
+        
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+        
+        await response.WriteStringAsync(JsonSerializer.Serialize(events));
+        
+        return response;
+    }
 }

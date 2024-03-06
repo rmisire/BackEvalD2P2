@@ -18,4 +18,9 @@ public class EventService : IEventService
     {
         await _eventRepository.AddEventAsync(even);
     }
+    
+    public async Task<IEnumerable<Event>> GetAllEventsAsync()
+    {
+        return await _eventRepository.GetAllEventsAsync();
+    }
 }
