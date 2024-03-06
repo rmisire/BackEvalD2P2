@@ -7,4 +7,6 @@ public interface IEventService
     Task AddEventAsync(Event even);
     
     Task<IEnumerable<Event>> GetAllEventsAsync();
+    
+    Task UpdateEventAsync(Event updatedEvent);
 }

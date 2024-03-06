@@ -25,4 +25,15 @@ public class EventRepository : IEventRepository
     {
         return await _context.Events.ToListAsync();
     }
+    
+    public async Task UpdateEventAsync(Event updatedEvent)
+    {
+        var existingEvent = await _context.Events.FindAsync(updatedEvent.IdEvent);
+        if (existingEvent == null)
+        {
+            throw new Exception("Event introuvable.");
+        }
+        _context.Entry(existingEvent).CurrentValues.SetValues(updatedEvent);
+        await _context.SaveChangesAsync();
+    }
 }

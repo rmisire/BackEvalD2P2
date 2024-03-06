@@ -23,4 +23,9 @@ public class EventService : IEventService
     {
         return await _eventRepository.GetAllEventsAsync();
     }
+    
+    public async Task UpdateEventAsync(Event updatedEvent)
+    {
+        await _eventRepository.UpdateEventAsync(updatedEvent);
+    }
 }
