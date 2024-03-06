@@ -36,4 +36,15 @@ public class EventRepository : IEventRepository
         _context.Entry(existingEvent).CurrentValues.SetValues(updatedEvent);
         await _context.SaveChangesAsync();
     }
+    
+    public async Task DeleteEventAsync(Guid idEvent)
+    {
+        var existingEvent = await _context.Events.FindAsync(idEvent);
+        if (existingEvent == null)
+        {
+            throw new Exception("Event introuvable.");
+        }
+        _context.Events.Remove(existingEvent);
+        await _context.SaveChangesAsync();
+    }
 }

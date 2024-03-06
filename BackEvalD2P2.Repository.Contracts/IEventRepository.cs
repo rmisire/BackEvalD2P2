@@ -9,4 +9,6 @@ public interface IEventRepository
     Task<IEnumerable<Event>> GetAllEventsAsync();
     
     Task UpdateEventAsync(Event updatedEvent);
+    
+    Task DeleteEventAsync(Guid idEvent);
 }

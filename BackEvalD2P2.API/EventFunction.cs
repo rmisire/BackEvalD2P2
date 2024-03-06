@@ -68,4 +68,18 @@ public class EventFunction
         
         return response;
     }
+    
+    [Function("DeleteEvent")]
+    public async Task<HttpResponseData> DeleteEvent([HttpTrigger(AuthorizationLevel.Function, "delete", Route = "event/{id}")] HttpRequestData req, Guid id, FunctionContext context)
+    {
+        var logger = context.GetLogger("EventFunction");
+        logger.LogInformation("C# HTTP trigger function processed a request.");
+        
+        await _eventService.DeleteEventAsync(id);
+        
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+        
+        return response;
+    }
 }
